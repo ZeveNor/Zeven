@@ -95,8 +95,14 @@
     padding-left: 50px;
     padding-right: 50px;
   }
-  .nav-item-first{
-    margin: 30px; 
+  .box-1{
+     width: 100%;
+  }
+  .box-2{
+     width: 100%;
+  }
+  .box-3{
+     width: 100%;
   }
 }
 
@@ -128,6 +134,24 @@
   }
   .dropdown-menu{
     border-style: solid;
+  }
+}
+
+/*  */
+.content-width{
+  margin: 0 5%;
+}
+
+.main-text{
+  font-size: 120px;
+}
+
+@media (max-width:992px) {
+  .content-width{
+    margin: 0 2%;
+  }
+  .main-text{
+    font-size: 40px;
   }
 }
 
