@@ -1,23 +1,27 @@
-
-var apiURL = 'https://stats.uptimerobot.com/api/getMonitorList/vVXxLj0Nu3?page=2&_=1731512595501';
+// var apiURL = 'http://localhost:4200/totalrec';
+var apiURL = 'https://api.jsonbin.io/v3/b/6734ff34acd3cb34a8a81a47';
 window.compact = false;
+var timer;
 
 $(function () {
   var counter = document.getElementsByClassName('counter')[0];
   var current = parseInt(counter.innerText);
-  callMonitorRender();
-  // if (current > 0) {
-  //   var t = current - 1;
-  //   if (t.toString().length == 1) {
-  //     t = '0' + t.toString();
-  //   }
-  //   counter.innerText = t;
-  // }
-  // else {
-  //   counter.innerText = "59";
-  //   callMonitorRender();
-  //   document.getElementsByClassName('last-updated')[0].innerText = new Date().toLocaleTimeString();
-  // }
+
+  timer = setInterval(function () {
+    current = parseInt(counter.innerText); 
+
+    if (current > 0) {
+      var t = current - 1;
+      if (t.toString().length === 1) {
+        t = '0' + t.toString();
+      }
+      counter.innerText = t; 
+    } else {
+      counter.innerText = "59"; 
+      callMonitorRender(); 
+      document.getElementsByClassName('last-updated')[0].innerText = new Date().toLocaleTimeString(); // Update last updated time
+    }
+  }, 1000); 
 });
 
 function callMonitorRender() { 
@@ -26,23 +30,15 @@ function callMonitorRender() {
     url: apiURL,
     dataType: "json",
     cache: false,
-    success: function (data) {
+    success: function (response) {
+      // data = response.result;
+      data = response.record;
       console.log(data);
-      
-      var downCount = data.statistics.counts.down;
-      var upCount = data.statistics.counts.up;
-      var pausedCount = data.statistics.counts.paused;
-      var totalCount = data.statistics.counts.total;
-      var totalMonitors = data.psp.totalMonitors;
-
-      var timezone = data.psp.timezone;
 
       var monitorHtml = '';
-
       var days = data.days.reverse();
 
       var w = window.innerWidth;
-
       var barLimit = 90;
       var svgW = window.compact ? 530 : 880;
       var svgH = window.compact ? 15 : 30;
@@ -76,7 +72,6 @@ function callMonitorRender() {
             notMonitored = false;
           }
 
-          /* set up a bar color based on value */
           var fillColor = "#3bd671"; // green color
           var fillOpacity = '1';
 
@@ -105,38 +100,7 @@ function callMonitorRender() {
             </div>';
         }
 
-        // Generate status dot for monitor
-        if (monitorData.statusClass == "success") {
-          statusDot = '<div class="uk-text-primary" title="Operational"><span class="dot" aria-hidden="true"></span><span class="uk-visible@s m-l-10">';
-          statusDot += window.compact ? 'Up' : 'Operational';
-          statusDot += '</span></div>';
-        } else if (monitorData.statusClass == "danger") {
-          statusDot = '<div class="uk-text-danger" title="Down"><span class="dot is-error" aria-hidden="true"></span><span class="uk-visible@s m-l-10">Down</span></div>';
-        } else {
-          statusDot = '<div class="uk-text-muted" title="Not monitored"><span class="dot is-grey" aria-hidden="true"></span><span class="uk-visible@s m-l-10">';
-          statusDot += window.compact ? 'N/A' : 'Not monitored';
-          statusDot += '</span></div>';
-        }
-
-        // Generate HTML for monitor row
-        monitorHtml += '\
-          <div class="psp-monitor-row">\
-          <div class="uk-flex uk-flex-between uk-flex-wrap">';
-
-        monitorHtml += '<div class="psp-monitor-row-header uk-text-muted uk-flex uk-flex-auto">';
-        monitorHtml += '<a title="' + monitorData.name + '" class="psp-monitor-name uk-text-truncate uk-display-inline-block" href="' + pageUrl + '/' + monitorData.monitorId + '">\
-          ' + monitorData.name + '\
-          <svg class="icon icon-plus-square uk-flex-none"></svg>\
-          </a>';
-        monitorHtml += '<div class="uk-flex-none">';
-
-        monitorHtml += '<span class="m-r-5 m-l-5 uk-visible@s">|</span>';
-
-        monitorHtml += '<div class="psp-monitor-row-status uk-visible@s">' + statusDot + '</div>';
-        monitorHtml += '<div class="uk-hidden@s uk-text-primary">' + monitorData['30dRatio']['ratio'] + '%</div>';
-        monitorHtml += '</div>';
         monitorHtml += barContained;
-        monitorHtml += '</div>';
       });
 
       $('.psp-monitor-list').html(monitorHtml);
