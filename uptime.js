@@ -42,7 +42,7 @@ function callMonitorRender() {
       var barLimit = 70; 
       var svgW = '100%';
       var svgWVW = '980'; 
-      var svgH = window.compact ? 15 : 55;
+      var svgH = window.compact ? 15 : 60;
       var barGap = window.compact ? 5.9 : "14";    
       var barW = window.compact ? 3.25 : "10"; 
       
@@ -53,6 +53,7 @@ function callMonitorRender() {
         svgWVW = '530';  
         barGap = 17.5;  
         barW = 14;
+        svgH = 55;
       }
       if (w <= 991) {
         barLimit = 30;
@@ -60,6 +61,7 @@ function callMonitorRender() {
         barGap = 25.7;
         barW = 20;
         rxR = 0;
+        svgH = 55;
       }
       
       if (w <= 500) { 
@@ -68,6 +70,7 @@ function callMonitorRender() {
         barGap = 42; 
         barW = 35;
         rxR = 0;
+        svgH = 55;
       }
 
 
