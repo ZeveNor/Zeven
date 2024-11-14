@@ -161,3 +161,22 @@
   padding: 40px 0;
 }
 
+.status{
+  padding: 3% 10%;
+}
+
+.bg-grad{
+  background: rgb(255, 4, 4);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.248) 0%, rgba(0, 0, 0, 0.353) 17%, rgba(52, 14, 84, 0.327) 100%);
+}
+
+.border-trans{
+  background-color: #212529;
+  border: #c2fbba36 solid 1px;
+}
+
+.text-body-secondary{
+  color: #c2fbba !important;
+}
+.psp-charts{
+}
