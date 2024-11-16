@@ -227,3 +227,14 @@
   background-color: #1f2129;
   border: solid 1px  rgba(141, 129, 186, 0.255); 
 }
+
+.login-background{
+  background: linear-gradient(180deg, #eba55b00 30%, #9981f9);
+  border: solid rgba(255, 255, 255, 0.499) 1px ;
+}
+
+.btn-primary{
+  border-color:#75d168;;
+  background-color: #75d168;
+  color: #1f2129;
+}

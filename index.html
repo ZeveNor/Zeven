@@ -32,6 +32,9 @@
   <!-- Jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+  <!--  -->
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" defer></script>
+
   <!-- Set Header -->
   <title>Document</title>
 
@@ -85,10 +88,11 @@
           <div class="input-group">
             <!-- <span class="input-group-text">Search</span> --> 
             <input type="text" width="30" class="form-control me-3 nav-input" placeholder="Search anything here." aria-label="">
-            <div class="user-area">
-              <div class="profile-frame" style="height: 50px; width: 50px;">
-                <a href='./dashboard.html' >
-                  <img src='https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png' style="width: 100%; height: 100%;" alt='' class="img-fluid rounded-circle" />
+            <div class="user-area ms-3">
+              <div class="profile-frame d-flex align-content-center justify-content-center" style="height: 50px; width: 50px;">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter" href='#' > 
+                  <!-- <img src='https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png' style="width: 100%; height: 100%;" alt='' class="img-fluid rounded-circle" /> -->
+                  <button type="button" class="btn" style="height: 100%; border: 1px rgba(255, 255, 255, 0.269) solid;">Login</button>
                 </a>
               </div>
             </div>
@@ -240,7 +244,7 @@
                     <div class="row align-items-center col-12">
                       <div class="psp-monitor-list d-flex" style="width: 100%;">
                       </div>
-                      <script src="./uptime.js"></script>      
+                      <!-- <script src="./uptime.js"></script>       -->
                     </div>
                   </div>
                 </div>
@@ -257,7 +261,7 @@
                     <div class="row align-items-center col-12" >
                       <div class="psp-monitor-list d-flex" style="width: 100%;">
                       </div>
-                      <script src="./uptime.js"></script>
+                      <!-- <script src="./uptime.js"></script> -->
                     </div>
                   </div>
                 </div>
@@ -293,5 +297,54 @@
       </ul>
     </div>
   </footer>
+  <div>
+    <div class="modal fade " id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+      style="display: none;" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-content login-background ">
+          <div class="modal-body p-1 ">
+            <section>
+              <div class="container bg-dark rounded-3">
+                <div class="row justify-content-sm-center ">
+                      <div class="card-body py-4 ">
+                        <h1 class="fs-1 card-title fw-semibold kanit-black text-center">ZEVCORE</h1>
+                        <p class="text-center kanit-regular pb-2  mx-5 " style="font-size: 12px; border-bottom: solid rgba(255, 255, 255, 0.157) 1px;">Designed by ZEVEN </p>
+                        <form method="POST" class="needs-validation px-lg-5" novalidate="" autocomplete="off">
+                          <div class="mb-3">
+                            <label class="mb-2 text-muted" for="email">Email or Username</label>
+                            <input id="email" type="email" class="form-control" name="email" value="" required>
+                            <div class="invalid-feedback">Email is invalid</div>
+                          </div>
+            
+                          <div class="mb-3">
+                            <label class="mb-2 text-muted" for="password">Password</label>
+                            <input id="password" type="password" class="form-control" name="password" required>
+                            <div class="invalid-feedback">Password is required</div>
+                          </div>
+
+                          <div class="text-center">
+                            Don't have acount? <a href="index.html" >Register</a>
+                          </div>
+
+                          <center>
+                          <div class="checkbox my-4">
+                            <div class="cf-turnstile" data-sitekey="1x00000000000000000000AA" data-theme="dark"></div>
+                          </div>
+                          </center>
+
+                          <div class="align-items-center d-flex gap-3">
+                            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                            <button type="submit" class="btn btn-danger w-100">Close</button>
+                          </div>
+                        </form>
+                      </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
