@@ -1,0 +1,35 @@
+.bg-gradient {
+  background: linear-gradient(220deg, #f4284799 30%, #9981f967) !important;
+} 
+ 
+.bg-color{ 
+  background: linear-gradient(90deg, #ffffffe8 79%, #4a484be8 1%) !important
+} 
+@media (max-width: 771px) { 
+  .bg-color{ 
+    background: linear-gradient(90deg, #ffffffe8 86%, #4a484be8 1%) !important
+  }
+}
+@media (max-width:700px) { 
+  .bg-gradient {
+    background: linear-gradient(220deg, #f709c3 30%, #ff0000e8) !important;
+    padding: 20px 0; 
+  }
+}
+
+.font-15{ 
+  font-size: 20px; 
+  margin-bottom: 10px;
+}
+
+
+.input {
+  line-height: 50px;
+  box-shadow: inset 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  padding: 0 20px;
+  font-size: 16px;
+  color: #666;
+  transition: all 0.4s ease;
+}
+
