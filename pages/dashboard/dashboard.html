@@ -36,7 +36,7 @@
   <title>Document</title>
 
   <!--  -->
-  <link rel='stylesheet' href='./dashboard.css' />
+  <link rel='stylesheet' href='./layout.css' />
   <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
 
   <!-- Boxicon -->
@@ -76,61 +76,100 @@
         </div>
         <ul class="sidebar-nav">
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+            <a href="#" class="sidebar-link fs-6">
               <i class="lni lni-home-2"></i>
               <span>Dashboard</span>
             </a>
           </li>
-          <!-- <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#auth"
-              aria-expanded="false" aria-controls="auth">
-              <i class="lni lni-protection"></i>
-              <span>Auth</span>
-            </a>
-            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-              <li class="sidebar-item">
-                <a href="#" class="sidebar-link">Login</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="#" class="sidebar-link">Register</a>
-              </li>
-            </ul>
-          </li> -->
-          <!-- <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse" data-bs-target="#multi"
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse" data-bs-target="#multi"
               aria-expanded="false" aria-controls="multi">
-              <i class="lni lni-layout"></i>
-              <span>Multi Level</span>
+              <i class="lni lni-basket-shopping-3"></i>
+              <span>Store</span>
             </a>
-            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+            <ul id="multi" class="sidebar-dropdown list-unstyled collapse fs-6" data-bs-parent="#sidebar">
               <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi-two"
+                <a href="#" class="sidebar-link collapsed fs-6" data-bs-toggle="collapse" data-bs-target="#multi-one"
                   aria-expanded="false" aria-controls="multi-two">
-                  Two Links
+                  Stock
                 </a>
-                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                <ul id="multi-one" class="sidebar-dropdown list-unstyled collapse fs-6">
                   <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Link 1</a>
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-plus" style="color: #febd4d;"></i>
+                      Product
+                    </a>
                   </li>
                   <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">Link 2</a>
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-plus text-warning"></i>
+                      Code
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed fs-6" data-bs-toggle="collapse" data-bs-target="#multi-two"
+                  aria-expanded="false" aria-controls="multi-two">
+                  Payment
+                </a>
+                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse fs-6">
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1" style="color: #febd4d;"></i>
+                      In Progress
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1 text-warning"></i>
+                      Completed
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1 text-danger"></i>
+                        Canceled
+                    </a>
                   </li>
                 </ul>
               </li>
             </ul>
-          </li> -->
+          </li>
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link">
+            <a href="#" class="sidebar-link fs-6">
               <i class="lni lni-gear-1"></i>
               <span>Setting</span>
             </a>
           </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse" data-bs-target="#auth"
+              aria-expanded="false" aria-controls="auth">
+              <i class="lni lni-bricks"></i>
+              <span>Utils</span>
+            </a>
+            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link fs-6">Upload File</a>
+              </li>
+              <!-- <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Register</a>
+              </li> -->
+            </ul>
+          </li>4
         </ul>
         <div class="sidebar-footer">
-          <a href="#" class="sidebar-link">
-            <i class="lni lni-exit"></i>
-            <span>Logout</span>
+          <div class="m-3">
+            <div class="progress" style="height: 8px;" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0"
+            aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 30%"></div>
+          </div>
+          <a class="mt-2 text-white p-0 sidebar-link" style="font-size: 12px; background: none; border: none;">
+            <span>STORAGE &nbsp;</span>
+            <span style="color: #5fff33;">30</span>
+            <span>&nbsp; of 100 GB</span>
           </a>
+          </div>
         </div>
       </aside>
       <script src="hamburger.js"></script>
@@ -150,8 +189,8 @@
             
             <div class="dropstart">
               <button class="btn btn-link" type="button" id="userDropdown"  data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://randomuser.me/api/portraits/men/10.jpg" class="rounded-circle" width="50" alt="User">
-              </button>
+                <img src="https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png" class="rounded-circle" width="50" alt="User">
+              </button> 
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
                 <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
