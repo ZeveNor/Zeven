@@ -39,6 +39,7 @@
   <link rel='stylesheet' href='../../styles/fonts.css' />
   <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
 
   <!-- Boxicon -->
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -238,11 +239,13 @@
       </nav>
 
       <!-- Main Content Area -->
-      <main class="content">
-        <h1>My Orders</h1>
-        <div id="myorder"></div>
-        
+      <main class="content" data-bs-theme="light">  
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+
+        <h1 class="mb-4">My Orders</h1>
+        <div class="card-body shadow-lg p-3 rounded-4" style="border: solid 1px rgba(129, 126, 126, 0.419);"> 
+          <div id="myorder"></div> 
+        </div>
         <script>
           new gridjs.Grid({
               search: true,
@@ -253,18 +256,21 @@
                   'font-size': '14px'
                 }
               },
-              columns: ["Date", "ID", "Name", "Status", "Seller", {
+              columns: ["Date", "Receipt ID", "Name", "Status", "Seller", {
                 name: 'Tools',
                 formatter: (cell, row) => {
                   const printButton = gridjs.h('button', {
-                    className: 'btn btn-secondary border rounded-2 text-white',
-                    onClick: () => alert(`Printing "${row.cells[2].data}" "${row.cells[1].data}"`)
+                    className: 'btn btn-secondary border rounded-2 text-white', 
+                    onClick: () => alert(`Viewing "${row.cells[2].data}" "${row.cells[1].data}"`)
                   }, gridjs.h('box-icon', { name: 'printer', color: '#ffffff', className: 'mt-1 mx-3' },));
 
-                  const viewButton = gridjs.h('button', {
+                   const viewButton = gridjs.h('button', {
                     className: 'btn btn-primary border rounded-2 text-white',
-                    onClick: () => alert(`Viewing "${row.cells[2].data}" "${row.cells[1].data}"`)
+                    'data-bs-toggle': "modal",
+                    'data-bs-target': `#viewModal`,
+                    onClick: () => showModal(row) 
                   }, gridjs.h('box-icon', { name: 'show', color: '#ffffff', className: 'mt-1 mx-3' },));
+
 
                   return gridjs.h('div', { className: 'gap-2 d-flex' }, viewButton, printButton);
                 }
@@ -281,6 +287,72 @@
               
             }).render(document.getElementById("myorder"));
 
+            function showModal(row) {
+                const modalTitle = document.getElementById('exampleModalLabel');
+                const modalBody = document.querySelector('#viewModal .modal-body');
+
+                
+
+                modalTitle.textContent = `Order Information`;
+                modalBody.innerHTML = `
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <p><strong>ID:</strong> ${row.cells[1].data}</p>
+                      <p><strong>Name:</strong> ${row.cells[2].data}</p>
+                      <p><strong>Date:</strong> ${row.cells[0].data}</p>
+                      
+                    </div>
+                    <div class="col">
+                      <p><strong>Username:</strong> zeven</p>
+                      <p><strong>Seller:</strong> ${row.cells[4].data}</p>
+                      <p><strong>Status:</strong> ${row.cells[3].data}</p>
+                    </div>
+                    <div class="col"> 
+                      <div style="width: 150px; height: 150px">   
+                        <center><img class="img-fluid ms-0 ms-md-5 " src="https://dummyimage.com/200x200/76787a/ffffff" 
+                          style="width: 100%; height: 100%; "> 
+                        </center> 
+                      </div>  
+                      <svg style="height: 100px" id="barcode"></svg>  
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row"> 
+                    <div class="col"> 
+                      <p><strong>Product Type:</strong> <span class="badge text-bg-warning">ID - PASS</span></p> 
+                       <div class="input-group mb-3">
+                        <span class="input-group-text">User ID</span>
+                        <input class="form-control bg-body-secondary" id="blur-user" type="password" value="member123456" aria-label="username" readonly>
+                        <button class="btn btn-dark" type="button" onclick="myuser('blur-user', 'button-user-unblur')" id="button-user-unblur">Show</button> 
+                      </div>
+                      
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">Password</span>
+                        <input class="form-control bg-body-secondary" id="blur-pass" type="password" value="pass12345" aria-label="pass" readonly>
+                        <button class="btn btn-dark" type="button" onclick="myuser('blur-pass', 'button-addon2')" id="button-addon2">Show</button> 
+                      </div>
+                    </div>  
+                  </div>
+                </div> 
+              
+                `;
+                JsBarcode("#barcode", `${row.cells[1].data}`);
+
+               
+              }
+               function myuser(inputId, buttonId) {
+                  var x = document.getElementById(inputId);
+                  var button = document.getElementById(buttonId);
+
+                  if (x.type === "password") {
+                    x.type = "text";
+                    button.textContent = 'Hide';
+                  } else {
+                    x.type = "password";
+                    button.textContent = 'Show';
+                  }
+                }
         </script>
 
       </main>
@@ -290,6 +362,18 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 
+  <div class="modal modal-lg  fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- <script>
     // Hide the loader when page is fully loaded
