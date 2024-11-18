@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang='en' data-bs-theme="dark">
+
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+
+  <!-- Bootstrap V5.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <!-- OpenGraph Setup -->
+  <meta property="og:title" content="ZEVCORE | SHOP DOC API Everything you want is here">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zevenor.github.io/Zeven">
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png">
+  <meta property="og:description" content="Webshop">
+
+  <!-- Font Google API -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
+
+  <!-- Jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <!-- Set Header -->
+  <title>Document</title>
+
+  <!--  -->
+  <link rel='stylesheet' href='./layout.css' />
+  <link rel='stylesheet' href='../../styles/fonts.css' />
+  <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet" />
+
+  <!-- Boxicon -->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+  <!-- Style Import -->
+
+  <!-- Set Style -->
+  <style>
+    :root {
+      --main: #ff9500;
+      --sub: #febd4d;
+      --sub-opa-50: #ff950080;
+      --sub-opa-25: #ff9500;
+    }
+  </style>
+</head>
+
+<body class="d-flex" data-bs-theme="light">
+  <!-- Loader -->
+  <!-- <div id="loader" class="d-flex justify-content-center align-items-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div> -->
+
+  <div class="d-flex w-100">
+    <div class="wrapper position-sticky">
+      <aside id="sidebar">
+        <div class="d-flex shadow-lg">
+          <button class="toggle-btn" type="button">
+            <img src='https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png' width="45px" alt='' />
+          </button>
+          <div class="sidebar-logo">
+            <a href="#">ZEVCORE</a>
+          </div>
+        </div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="./dashboard.html" class="sidebar-link fs-6">
+              <i class="lni lni-home-2"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link fs-6">
+              <i class="lni lni-megaphone-1"></i>
+              <span>Announce</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link fs-6">
+              <i class="lni lni-basket-shopping-3"></i>
+              <span>Shop</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link fs-6">
+              <img style="margin-right: .675rem;" src='../../image/history.svg' alt='' />
+              <span>My Order</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse"
+              data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+              <img style="margin-right: .675rem;" src='../../image/dashboard.svg' alt='' />
+              <span>Admin</span>
+            </a>
+            <ul id="multi" class="sidebar-dropdown list-unstyled collapse fs-6" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed fs-6" data-bs-toggle="collapse" data-bs-target="#multi-one"
+                  aria-expanded="false" aria-controls="multi-two">
+                  Stock
+                </a>
+                <ul id="multi-one" class="sidebar-dropdown list-unstyled collapse fs-6">
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-plus" style="color: #febd4d;"></i>
+                      Product
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-plus text-warning"></i>
+                      Code
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-plus text-warning"></i>
+                      ID Selling
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link collapsed fs-6" data-bs-toggle="collapse" data-bs-target="#multi-two"
+                  aria-expanded="false" aria-controls="multi-two">
+                  Payment
+                </a>
+                <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse fs-6">
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1" style="color: #febd4d;"></i>
+                      In Progress
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1 text-warning"></i>
+                      Completed
+                    </a>
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="#" class="sidebar-link fs-6">
+                      <i class="lni lni-check-circle-1 text-danger"></i>
+                      Canceled
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link fs-6">
+              <i class="lni lni-gear-1"></i>
+              <span>Setting</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link fs-6">
+              <i class="lni lni-message-3-text"></i>
+              <span>Message</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse"
+              data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="lni lni-bricks"></i>
+              <span>Utils</span>
+            </a>
+            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+              <li class="sidebar-item">
+                <a href="#" class="sidebar-link fs-6">Upload File</a>
+              </li>
+              <!-- <li class="sidebar-item">
+                <a href="#" class="sidebar-link">Register</a>
+              </li> -->
+            </ul>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <div class="m-3">
+            <div class="progress" style="height: 8px;" role="progressbar" aria-label="Animated striped example"
+              aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 30%"></div>
+            </div>
+            <a class="mt-2 text-white p-0 sidebar-link" style="font-size: 12px; background: none; border: none;">
+              <span>STORAGE &nbsp;</span>
+              <span style="color: #5fff33;">30</span>
+              <span>&nbsp; of 100 GB</span>
+            </a>
+          </div>
+        </div>
+      </aside>
+      <script src="hamburger.js"></script>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex-grow-1 main">
+      <!-- Topbar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg">
+        <div class="container-fluid">
+          <button class="btn btn-link d-lg-none" type="button" id="sidebar-toggle">
+            <i class="bi bi-list"></i>
+          </button>
+          <form class="d-flex w-50">
+          </form>
+          <div class="d-flex">
+
+            <div class="dropstart">
+              <button class="btn btn-link" type="button" id="userDropdown" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <img src="https://cdn.jsdelivr.net/gh/ZeveNor/Unicow@refs/heads/main/src/img/a.png"
+                  class="rounded-circle" width="50" alt="User">
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Settings</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="content">
+        <h1>My Orders</h1>
+        <div id="myorder"></div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+        <script>
+          new gridjs.Grid({
+              search: true,
+              sort: true,
+              pagination: true,
+              style: {
+                table: {
+                  'font-size': '14px'
+                }
+              },
+              columns: ["Date", "ID", "Name", "Status", "Seller", {
+                name: 'Tools',
+                formatter: (cell, row) => {
+                  const printButton = gridjs.h('button', {
+                    className: 'btn btn-secondary border rounded-2 text-white',
+                    onClick: () => alert(`Printing "${row.cells[2].data}" "${row.cells[1].data}"`)
+                  }, gridjs.h('box-icon', { name: 'printer', color: '#ffffff', className: 'mt-1 mx-3' },));
+
+                  const viewButton = gridjs.h('button', {
+                    className: 'btn btn-primary border rounded-2 text-white',
+                    onClick: () => alert(`Viewing "${row.cells[2].data}" "${row.cells[1].data}"`)
+                  }, gridjs.h('box-icon', { name: 'show', color: '#ffffff', className: 'mt-1 mx-3' },));
+
+                  return gridjs.h('div', { className: 'gap-2 d-flex' }, viewButton, printButton);
+                }
+              }],
+              data: () => {
+                return new Promise(resolve => {
+                  setTimeout(() =>
+                    resolve([
+                      ['2024-03-14 8:57', '0x1756975', 'Spotify Premium', 'Success', 'System'],
+                      ['2024-03-13 12:01', '0x1756975', 'Joox Premium', 'Success', 'System']
+                    ]), 2000);
+                });
+              },
+              
+            }).render(document.getElementById("myorder"));
+
+        </script>
+
+      </main>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+
+  <!-- <script>
+    // Hide the loader when page is fully loaded
+    window.addEventListener('load', function () {
+      document.getElementById('loader').style.display = 'none';
+    });
+  </script> -->
+</body>
+
+</html>
