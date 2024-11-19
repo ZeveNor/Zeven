@@ -102,21 +102,21 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse"
-              data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse" data-bs-target="#multi"
+              aria-expanded="false" aria-controls="multi">
               <img style="margin-right: .675rem;" src='../../image/dashboard.svg' alt='' />
               <span>Admin</span>
             </a>
-            <ul id="multi" class="sidebar-dropdown list-unstyled collapse fs-6" data-bs-parent="#sidebar">
-              <li class="sidebar-item">
+            <ul id="multi" style="z-index: 1000;"  class="sidebar-dropdown list-unstyled collapse fs-6" data-bs-parent="#sidebar">
+              <li class="sidebar-item" >
                 <a href="#" class="sidebar-link collapsed fs-6" data-bs-toggle="collapse" data-bs-target="#multi-one"
                   aria-expanded="false" aria-controls="multi-two">
                   Stock
                 </a>
                 <ul id="multi-one" class="sidebar-dropdown list-unstyled collapse fs-6">
-                  <li class="sidebar-item">
+                  <li class="sidebar-item" >
                     <a href="#" class="sidebar-link fs-6">
-                      <i class="lni lni-plus" style="color: #febd4d;"></i>
+                      <i class="lni lni-plus" style="color: #febd4d;" ></i>
                       Product
                     </a>
                   </li>
@@ -175,8 +175,8 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse"
-              data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+            <a href="#" class="sidebar-link collapsed has-dropdown fs-6" data-bs-toggle="collapse" data-bs-target="#auth"
+              aria-expanded="false" aria-controls="auth">
               <i class="lni lni-bricks"></i>
               <span>Utils</span>
             </a>
@@ -185,8 +185,8 @@
                 <a href="#" class="sidebar-link fs-6">Upload File</a>
               </li>
               <!-- <li class="sidebar-item">
-                <a href="#" class="sidebar-link">Register</a>
-              </li> -->
+                    <a href="#" class="sidebar-link">Register</a>
+                  </li> -->
             </ul>
           </li>
         </ul>
@@ -237,12 +237,13 @@
           </div>
         </div>
       </nav>
-
+       
       <!-- Main Content Area -->
       <main class="content" data-bs-theme="light">  
         <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
 
         <h1 class="mb-4">My Orders</h1>
+        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#fullscreenModal">Full Table</button>
         <div class="card-body shadow-lg p-3 rounded-4" style="border: solid 1px rgba(129, 126, 126, 0.419);"> 
           <div id="myorder"></div> 
         </div>
@@ -253,8 +254,8 @@
               pagination: true,
               style: {
                 table: {
-                  'font-size': '14px'
-                }
+                  'font-size': '14px',
+                },
               },
               columns: ["Date", "Receipt ID", "Name", "Status", "Seller", {
                 name: 'Tools',
@@ -291,8 +292,6 @@
                 const modalTitle = document.getElementById('exampleModalLabel');
                 const modalBody = document.querySelector('#viewModal .modal-body');
 
-                
-
                 modalTitle.textContent = `Order Information`;
                 modalBody.innerHTML = `
                 <div class="container">
@@ -301,12 +300,14 @@
                       <p><strong>ID:</strong> ${row.cells[1].data}</p>
                       <p><strong>Name:</strong> ${row.cells[2].data}</p>
                       <p><strong>Date:</strong> ${row.cells[0].data}</p>
-                      
+                      <p><strong>Start Time:</strong></p>
+                      <p><strong>Duration:</strong></p>
                     </div>
                     <div class="col">
                       <p><strong>Username:</strong> zeven</p>
                       <p><strong>Seller:</strong> ${row.cells[4].data}</p>
                       <p><strong>Status:</strong> ${row.cells[3].data}</p>
+                      <p><strong>End Time:</strong></p>
                     </div>
                     <div class="col"> 
                       <svg style="height: 100px" id="barcode"></svg>  
@@ -333,7 +334,7 @@
               
                 `;
                 JsBarcode("#barcode", `${row.cells[1].data}`);
-
+              
                
               }
                function myuser(inputId, buttonId) {
@@ -351,18 +352,144 @@
         </script>
 
       </main>
-
+      
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <div class="modal fade" id="fullscreenModal" tabindex="-1" aria-labelledby="fullscreenModalLabel" >
+    <div class="modal-dialog modal-dialog-centered  modal-fullscreen">
+      <div class="modal-content"> 
+        <div class="modal-header d-flex justify-content-between">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">My Order Lists <span class="badge text-bg-success ms-3 ">Fullscreem Mode</span></h1>
+          <button type="button class=" btn-close shadow"
+            style="background-color: white; border: solid 1px rgba(152, 152, 152, 0.455);" data-bs-dismiss="modal"
+            aria-label="Close">
+            <p style="color: black;" class="m-0 p-0 mx-1 my-1">x</p>
+          </button>
+        </div>
+        <div class="modal-body phone">
+          <div id="myorderFullscreen"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script> 
+    $('#fullscreenModal').on('shown.bs.modal', function () {
+      new gridjs.Grid({
+        search: true,
+        sort: true,
+        pagination: true,
+        className: {
+          container: 'custom-table',       
+          table: 'custom-table',          
+          header: 'custom-table',         
+          footer: 'custom-table',            
+          search: 'custom-search',           
+          sort: 'custom-table',              
+                     
+        },
+        columns: ["Date", "Receipt ID", "Name", "Status", "Seller", {
+          name: 'Tools',
+          formatter: (cell, row) => {
+            const printButton = gridjs.h('button', {
+              className: 'btn btn-secondary border rounded-2 text-white',
+              onClick: () => alert(`Viewing "${row.cells[2].data}" "${row.cells[1].data}"`)
+            }, gridjs.h('box-icon', { name: 'printer', color: '#ffffff', className: 'mt-1 mx-3' },));
+
+            const viewButton = gridjs.h('button', {
+              className: 'btn btn-primary border rounded-2 text-white',
+              'data-bs-toggle': "modal",
+              'data-bs-target': `#viewModalFullscreen`, 
+              onClick: () => showModalFullscreen(row)
+            }, gridjs.h('box-icon', { name: 'show', color: '#ffffff', className: 'mt-1 mx-3' },));
+
+
+            return gridjs.h('div', { className: 'gap-2 d-flex' }, viewButton, printButton);
+          }
+        }],
+        data: () => {
+          return new Promise(resolve => {
+            setTimeout(() => 
+              resolve([
+                ['2024-03-14 8:57', '0x1756975', 'Spotify Premium', 'Success', 'System'],
+                ['2024-03-13 12:01', '0x1756975', 'Joox Premium', 'Success', 'System']
+              ]), 0);
+          });
+        },
+      }).render(document.getElementById("myorderFullscreen"));
+    });
+
+    function showModalFullscreen(row) {
+        const modalTitle = document.getElementById('exampleModalLabelFullscreen');
+        const modalBody = document.querySelector('#viewModalFullscreen .modal-body');
+
+        modalTitle.textContent = `Order Information`;
+        modalBody.innerHTML = `
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <p><strong>ID:</strong> ${row.cells[1].data}</p>
+                <p><strong>Name:</strong> ${row.cells[2].data}</p>
+                <p><strong>Date:</strong> ${row.cells[0].data}</p>
+                <p><strong>Start Time:</strong></p>
+                <p><strong>Duration:</strong></p>
+              </div>
+              <div class="col">
+                <p><strong>Username:</strong> zeven</p>
+                <p><strong>Seller:</strong> ${row.cells[4].data}</p>
+                <p><strong>Status:</strong> ${row.cells[3].data}</p>
+                <p><strong>End Time:</strong></p>
+              </div>
+              <div class="col"> 
+                <svg style="height: 100px" id="barcode"></svg>  
+              </div>
+            </div>
+            <hr />
+            <div class="row"> 
+              <div class="col"> 
+                <p><strong>Product Type:</strong> <span class="badge text-bg-warning">ID - PASS</span></p> 
+                  <div class="input-group mb-3">
+                  <span class="input-group-text">User ID</span>
+                  <input class="form-control bg-body-secondary" id="blur-user" type="password" value="member123456" aria-label="username" readonly>
+                  <button class="btn btn-dark" type="button" onclick="myuser('blur-user', 'button-user-unblur')" id="button-user-unblur">Show</button> 
+                </div>
+                
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Password</span>
+                  <input class="form-control bg-body-secondary" id="blur-pass" type="password" value="pass12345" aria-label="pass" readonly>
+                  <button class="btn btn-dark" type="button" onclick="myuser('blur-pass', 'button-addon2')" id="button-addon2">Show</button> 
+                </div>
+              </div>  
+            </div>
+          </div> 
+        
+          `;}
+  </script> 
+
+  <div class="modal fade" id="viewModalFullscreen" tabindex="-1" aria-labelledby="viewModalLabelFullscreen" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-between">
+          <h1 class="modal-title fs-5" id="exampleModalLabelFullscreen">Modal title</h1>
+          <button type="button class=" btn-close shadow"
+            style="background-color: white; border: solid 1px rgba(152, 152, 152, 0.455);" data-bs-dismiss="modal"
+            aria-label="Close">
+            <p style="color: black;" class="m-0 p-0 mx-1 my-1">x</p>
+          </button>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="modal modal-lg  fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header d-flex justify-content-between">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button class="btn-close shadow" style="background-color: white; border: solid 1px rgba(152, 152, 152, 0.455);" data-bs-dismiss="modal" aria-label="Close"><p style="color: black;" class="m-0 p-0 mx-1 my-1" >x</p></button>
         </div>
         <div class="modal-body">
         </div>
